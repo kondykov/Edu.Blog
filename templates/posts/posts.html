@@ -1,4 +1,4 @@
-﻿{% extends 'base.html' %}
+﻿{% extends 'common/base.html' %}
 
 {% block content %}
     <div class="container">
@@ -25,13 +25,11 @@
                         <td>{{ post.created_at }}</td>
                         <td>{{ post.updated_at }}</td>
                     </tr>
-                {% empty %}
                 {% endfor %}
                 </tbody>
             </table>
         {% else %}
             <p>Posts not found</p>
         {% endif %}
-
     </div>
 {% endblock %}
