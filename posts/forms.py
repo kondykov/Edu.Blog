@@ -11,3 +11,12 @@ class PostForm(forms.Form):
         widget=forms.Textarea,
         max_length=512,
     )
+
+class UserForm(forms.Form):
+    username = forms.CharField(
+        max_length=127,
+    )
+    password = forms.CharField(
+        max_length=127,
+        widget=forms.PasswordInput,
+    )

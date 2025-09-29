@@ -1,0 +1,47 @@
+﻿{% extends 'common/base.html' %}
+
+{% block content %}
+    <div class="container">
+        <h1>Post {{ post.title }}</h1>
+        <form class="{% if error %} was-validated {% endif %}" method="POST">
+            {% csrf_token %}
+
+            <div class="mb-3">
+                <label for="validationServer01" class="form-label">Post id</label>
+                <input type="text" class="form-control" id="validationServer01" value="{{ post.id }}"
+                       disabled>
+            </div>
+
+            <div class="mb-3">
+                <label for="validationServer01" class="form-label">Title</label>
+                <input type="text" class="form-control" id="validationServer01" value="{{ post.title }}" name="title"
+                       required>
+                <div class="invalid-feedback">
+                    Title is required!
+                </div>
+            </div>
+
+            <div class="mb-3">
+                <label for="validationTextarea" class="form-label">Content</label>
+                <textarea class="form-control" id="validationTextarea"
+                          placeholder="Required example textarea" name="content" required>{{ post.content }}</textarea>
+                <div class="invalid-feedback">
+                    Please enter a message in the textarea.
+                </div>
+            </div>
+
+            <div class="btn-group" role="group" aria-label="Post actions">
+                <form action="{% url 'post-update' post.id %}" method="get" class="mb-0">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-primary">Save</button>
+                </form>
+
+                <form action="{% url 'post-delete' post.id %}" method="post" class="mb-0">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-danger">Delete</button>
+                </form>
+                <a class="btn btn-primary" href="{% url 'post-list' %}">Go to post list</a>
+            </div>
+        </form>
+    </div>
+{% endblock %}
